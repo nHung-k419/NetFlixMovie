@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+
+.nav .ul{
+    display: none;
+}
+.nav:hover .ul{
+    transition: 0.2s;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-direction: column;
+}
+.nav .Down {
+    transition: 0.3s;
+}
+.nav:hover .Down {
+    transform: rotate(180deg);
+}
+.Nav2 .ul {
+    display: none;
+}
+.Nav2:hover .ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-direction: column;
+}
+.Nav2 .Down2 {
+    transition: 0.3s;
+}
+.Nav2:hover .Down2{
+    transform: rotate(180deg);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/*Start Prev && Net slider Slick */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.slick-next{
+    background-color: red;
+    justify-content: center;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/*End Prev && Net slider Slick */
+/* slick-arrow slick-next */
