@@ -6,8 +6,13 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import Movie from "./Pages/Movie";
 import { PublicRoutes } from './Routes/index.js'
 import DefaultLayout from "./Component/Layout/DefaultLayout/index.js";
+import { toast, ToastContainer } from 'react-toastify';
 function App() {
   const [Toogle, setToogle] = useState('')
+  const [getLocalStorage, setgetLocalStorage] = useState(() => {
+    const MovieSaves = localStorage.getItem('MovieSave')
+    return JSON.parse(MovieSaves)
+})
   // let Data_init
   // // const [Data_Cate_Child, setData_Cate_Child] = useState('hanh-dong')
   // // const [Data_Country_Child,setData_Country_Child] = useState('trung-quoc')
@@ -33,7 +38,6 @@ function App() {
   //   }
   // console.log(value_Search);
   // }
-
   const toggle = (toogle) => {
     setToogle(toogle)
   }
@@ -58,7 +62,7 @@ function App() {
               path={route.path}
               element={
                 <Layout>
-                  <Page toggle = {toggle} Toogle = {Toogle}/>
+                  <Page toggle = {toggle} Toogle = {Toogle} getLocalStorage = {getLocalStorage} />
                 </Layout>} />)
         })}
       </Routes>

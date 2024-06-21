@@ -140,7 +140,7 @@ function Navbar({ props }) {
                         <a href='/TV_Shows' className='ml-5 hover:text-orange-300 cursor-pointer text-lg'>TV Shows</a>
                     </div>
                     <div className='mt-5'>
-                        <a className='ml-5 hover:text-orange-300 cursor-pointer text-lg '>Phim Đã Lưu</a>
+                        <a href='/Save_Movies' className='ml-5 hover:text-orange-300 cursor-pointer text-lg '>Phim Đã Lưu</a>
                     </div>
                     <div className='nav mt-5'>
                         <a className={` ml-5 group: hover:text-orange-300 cursor-pointer flex items-center relative text-lg }`} >Thể Loại <FaChevronDown className='Down mt-1 ml-2 ' /></a>

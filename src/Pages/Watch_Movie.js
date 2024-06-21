@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Navbar from '../Component/Navbar';
 import GridLoader from "react-spinners/GridLoader";
+
 function Watch_Movie() {
     const { watch } = useParams()
     const [WatchMovie, setWatchMovie] = useState([])
@@ -10,6 +11,7 @@ function Watch_Movie() {
     const [checkSlug, setCheckSlug] = useState([])
     const [seriesMovie, setcheckseriesMovie] = useState(false)
     const [Time_spinner, setTime_spinner] = useState(true)
+    const [SaveMovie, setSaveMovie] = useState([])
     const handlecheckData = (e) => {
         for (let i = 0; i < checkSlug.length; i++) {
             if (e.target.dataset.slug === checkSlug[i].slug) {

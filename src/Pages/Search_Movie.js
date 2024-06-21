@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { FaPlay } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
 import GridLoader from "react-spinners/GridLoader";
+import { RiAddBoxFill } from "react-icons/ri";
+import { FaRegHeart } from "react-icons/fa";
+import { toast, ToastContainer } from 'react-toastify';
 function Search_Movie() {
     const { slug_Search } = useParams()
     // console.log(slug_Search)
@@ -11,7 +14,21 @@ function Search_Movie() {
     const [Time_spinner, setTime_spinner] = useState(true)
     const [title_Search, settitle_Search] = useState('')
     const [Page, setPage] = useState(1)
+    const [SaveMovie, setSaveMovie] = useState([])
     let numberPage = []
+    const handleAddMovie = (Slug) => {
+        if (Slug !== '') {
+            fetch(`https://phimapi.com/phim/${Slug}`)
+                .then(res => res.json())
+                .then(data => {
+                    setSaveMovie(SaveMovie.concat(data))
+                }) 
+        }
+    }
+    if (SaveMovie.length) {
+        localStorage.setItem('MovieSave', JSON.stringify(SaveMovie))
+        toast.success('Lưu Thành Công')
+    }
     useEffect(() => {
         fetch(`https://phimapi.com/v1/api/tim-kiem?keyword=${slug_Search}&limit=18`)
             .then(res => res.json())
@@ -51,6 +68,12 @@ function Search_Movie() {
                                             <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
                                             <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
                                                 <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
+                                            </div>
+                                            <div>
+                                                <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden group-hover:block size-8 text-white' />
+                                            </div>
+                                            <div>
+                                                <FaRegHeart className='absolute bottom-0 left-3 hidden group-hover:block size-6 text-white' />
                                             </div>
                                         </div>
                                     </div>

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { FaPlay } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
 import GridLoader from "react-spinners/GridLoader";
+import { RiAddBoxFill } from "react-icons/ri";
+import { FaRegHeart } from "react-icons/fa";
+import { toast, ToastContainer } from 'react-toastify';
 function Category_Movie() {
     const { slug_cate } = useParams()
     const [PartSeriesMovie, setPartSeriesMovie] = useState([])
@@ -9,7 +12,21 @@ function Category_Movie() {
     const [Time_spinner, setTime_spinner] = useState(true)
     const [Title_Movie, setTitle_Movie] = useState('')
     const [Page, setPage] = useState(1)
+    const [SaveMovie, setSaveMovie] = useState([])
     let numberPage = []
+    const handleAddMovie = (Slug) => {
+        if (Slug !== '') {
+            fetch(`https://phimapi.com/phim/${Slug}`)
+                .then(res => res.json())
+                .then(data => {
+                    setSaveMovie(SaveMovie.concat(data))
+                }) 
+        }
+    }
+    if (SaveMovie.length) {
+        localStorage.setItem('MovieSave', JSON.stringify(SaveMovie))
+        toast.success('Lưu Thành Công')
+    }
     useEffect(() => {
         fetch(`https://phimapi.com/v1/api/the-loai/${slug_cate}?page=${Page}&limit=18`)
             .then(res => res.json())
@@ -48,6 +65,12 @@ function Category_Movie() {
                                         <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
                                             <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
                                         </div>
+                                        <div>
+                                                <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden group-hover:block size-8 text-white' />
+                                            </div>
+                                            <div>
+                                                <FaRegHeart className='absolute bottom-0 left-3 hidden group-hover:block size-6 text-white' />
+                                            </div>
                                     </div>
                                 </div>
                                 <h3 className='mt-1 w-[200px]  text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>

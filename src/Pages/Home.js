@@ -4,15 +4,19 @@ import { FaPlay } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import GridLoader from "react-spinners/GridLoader";
-import { MdAdd } from "react-icons/md";
-function Content({Toogle}) {
+import { RiAddBoxFill } from "react-icons/ri";
+import { FaRegHeart } from "react-icons/fa";
+import { toast, ToastContainer } from 'react-toastify';
+import { FaSquareMinus } from "react-icons/fa6";
+function Content({ Toogle, getLocalStorage }) {
     const [isLoadding, setLoading] = useState(true)
     const [Api_single_movie, setApi_single_movie] = useState([])
     const [Api_series_movie, setApi_series_movie] = useState([])
     const [Api_anime_movie, setApi_anime_movie] = useState([])
     const [Api_Tv_Show, setApi_Tv_Show] = useState([])
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
+    const [SaveMovie, setSaveMovie] = useState([])
+    // const [Slug, handleAddMovie] = useState('')
     useEffect(() => {
         const handleResize = () => {
             setScreenWidth(window.innerWidth);
@@ -24,7 +28,6 @@ function Content({Toogle}) {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-    // console.log(screenWidth);
     useEffect(() => {
         fetch(`https://phimapi.com/v1/api/danh-sach/phim-le`)
             .then(res => res.json())
@@ -70,7 +73,19 @@ function Content({Toogle}) {
                 }, 1500)
             })
     }, [])
-    // console.log(window.innerWidth);
+    const handleAddMovie = (Slug) => {
+        if (Slug !== '') {
+            fetch(`https://phimapi.com/phim/${Slug}`)
+                .then(res => res.json())
+                .then(data => {
+                    setSaveMovie(SaveMovie.concat(data))
+                }) 
+        }
+    }
+    if (SaveMovie.length) {
+        localStorage.setItem('MovieSave', JSON.stringify(SaveMovie))
+        toast.success('Lưu Thành Công')
+    }
     const settings = {
         className: "center",
         infinite: true,
@@ -88,8 +103,8 @@ function Content({Toogle}) {
             {isLoadding ? <div className='flex justify-center lg:items-center lg:h-screen h-screen items-center mt-10'>
                 <GridLoader color='#36d7b7' />
             </div> : <div>
-                <div> 
-                    <h2 className='lg:uppercase lg:mt-5 lg:text-white lg:pl-[75px] lg:flex gap-1 uppercase mt-5 text-white pl-[15px] '>Phim Lẻ</h2>
+                <div>
+                    <h2 className='lg:uppercase lg:mt-5 lg:text-white lg:pl-[75px] lg:font-bold lg:flex gap-1 uppercase mt-5 text-white pl-[15px] '>Phim Lẻ</h2>
                     <div className='lg:pl-[63px] lg:w-[94%] '>
                         {screenWidth >= 300 && screenWidth <= 768 ? <>{Api_single_movie.map((item, index) => (
                             <div key={index} className='mt-5'>
@@ -98,6 +113,12 @@ function Content({Toogle}) {
                                         <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
                                         <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
                                             <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
+                                        </div>
+                                        <div>
+                                            <RiAddBoxFill onClick={() => handleAddMovie(item.slug)} className='absolute top-[-4px] left-24 hidden group-hover:block size-7 text-white' />
+                                        </div>
+                                        <div>
+                                            <FaRegHeart className='absolute bottom-[-1px] left-18 hidden group-hover:block size-6 text-white' />
                                         </div>
                                     </div>
                                 </div>
@@ -112,6 +133,12 @@ function Content({Toogle}) {
                                             <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
                                                 <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
                                             </div>
+                                            <div>
+                                                <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden group-hover:block size-8 text-white' />
+                                            </div>
+                                            <div>
+                                                <FaRegHeart className='absolute bottom-0 left-3 hidden group-hover:block size-6 text-white' />
+                                            </div>
                                         </div>
                                     </div>
                                     <h3 className='mt-1 text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>
@@ -121,7 +148,7 @@ function Content({Toogle}) {
                     </div>
                 </div>
                 <div>
-                    <h2 className='lg:uppercase lg:mt-5 lg:text-white lg:pl-[75px] lg:flex gap-1 uppercase mt-5 text-white pl-[15px]'>Phim Bộ</h2>
+                    <h2 className='lg:uppercase lg:mt-5 lg:text-white lg:pl-[75px] lg:font-bold lg:flex gap-1 uppercase mt-5 text-white pl-[15px]'>Phim Bộ</h2>
                     <div className='lg:pl-[63px] lg:w-[94%] '>
                         {screenWidth >= 300 && screenWidth <= 768 ? <>{Api_series_movie.map((item, index) => (
                             <div key={index} className='mt-5'>
@@ -130,6 +157,12 @@ function Content({Toogle}) {
                                         <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
                                         <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
                                             <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
+                                        </div>
+                                        <div>
+                                            <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-24 hidden group-hover:block size-7 text-white' />
+                                        </div>
+                                        <div>
+                                            <FaRegHeart className='absolute bottom-[-1px] left-18 hidden group-hover:block size-6 text-white' />
                                         </div>
                                     </div>
                                 </div>
@@ -144,6 +177,12 @@ function Content({Toogle}) {
                                             <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
                                                 <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
                                             </div>
+                                            <div>
+                                                <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden group-hover:block size-8 text-white' />
+                                            </div>
+                                            <div>
+                                                <FaRegHeart className='absolute bottom-0 left-3 hidden group-hover:block size-6 text-white' />
+                                            </div>
                                         </div>
                                     </div>
                                     <h3 className='mt-1 text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>
@@ -153,7 +192,7 @@ function Content({Toogle}) {
                     </div>
                 </div>
                 <div>
-                    <h2 className='lg:uppercase lg:mt-5 lg:text-white lg:pl-[75px] lg:flex gap-1 uppercase mt-5 text-white pl-[15px]'>Phim Hoạt Hình</h2>
+                    <h2 className='lg:uppercase lg:mt-5 lg:text-white lg:pl-[75px] lg:font-bold lg:flex gap-1 uppercase mt-5 text-white pl-[15px]'>Phim Hoạt Hình</h2>
                     <div className='lg:pl-[63px] lg:w-[94%] '>
                         {screenWidth >= 300 && screenWidth <= 768 ? <>{Api_anime_movie.map((item, index) => (
                             <div key={index} className='mt-5'>
@@ -162,6 +201,12 @@ function Content({Toogle}) {
                                         <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
                                         <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
                                             <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
+                                        </div>
+                                        <div>
+                                            <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-24 hidden group-hover:block size-7 text-white' />
+                                        </div>
+                                        <div>
+                                            <FaRegHeart className='absolute bottom-[-1px] left-18 hidden group-hover:block size-6 text-white' />
                                         </div>
                                     </div>
                                 </div>
@@ -176,6 +221,12 @@ function Content({Toogle}) {
                                             <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
                                                 <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
                                             </div>
+                                            <div>
+                                                <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden group-hover:block size-8 text-white' />
+                                            </div>
+                                            <div>
+                                                <FaRegHeart className='absolute bottom-0 left-3 hidden group-hover:block size-6 text-white' />
+                                            </div>
                                         </div>
                                     </div>
                                     <h3 className='mt-1 text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>
@@ -185,7 +236,7 @@ function Content({Toogle}) {
                     </div>
                 </div>
                 <div>
-                    <h2 className='lg:uppercase lg:mt-5 lg:text-white lg:pl-[75px] lg:flex gap-1 uppercase mt-5 text-white pl-[15px]'>TV Shows</h2>
+                    <h2 className='lg:uppercase lg:mt-5 lg:text-white lg:pl-[75px] lg:font-bold lg:flex gap-1 uppercase mt-5 text-white pl-[15px]'>TV Shows</h2>
                     <div className='lg:pl-[63px] lg:w-[94%] '>
                         {screenWidth >= 300 && screenWidth <= 768 ? <>{Api_Tv_Show.map((item, index) => (
                             <div key={index} className='mt-5'>
@@ -194,6 +245,12 @@ function Content({Toogle}) {
                                         <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
                                         <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
                                             <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
+                                        </div>
+                                        <div>
+                                            <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-24 hidden group-hover:block size-7 text-white' />
+                                        </div>
+                                        <div>
+                                            <FaRegHeart className='absolute bottom-[-1px] left-18 hidden group-hover:block size-6 text-white' />
                                         </div>
                                     </div>
                                 </div>
@@ -207,6 +264,12 @@ function Content({Toogle}) {
                                             <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
                                             <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
                                                 <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
+                                            </div>
+                                            <div>
+                                                <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden group-hover:block size-8 text-white' />
+                                            </div>
+                                            <div>
+                                                <FaRegHeart className='absolute bottom-0 left-3 hidden group-hover:block size-6 text-white' />
                                             </div>
                                         </div>
                                     </div>
