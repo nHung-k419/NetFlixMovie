@@ -9,12 +9,12 @@ function SaveMovies({getLocalStorage}) {
     return (
         <div className={`${getLocalStorage.length > 12 ? 'h-full' : 'h-screen'}`}>
             <div>
-                <div className='w-[97%] pl-[65px] mt-10'>
+                <div className='w-[97%] lg:pl-[65px] pl-[85px] mt-10'>
                     <h2 className='lg:uppercase lg:mt-5 lg:text-white lg:font-bold gap-1 uppercase mt-5 text-white pl-[15px] '>Phim Đã Lưu</h2>
                     <div className='flex flex-wrap items-center '>
                         {getLocalStorage.map((item, index) =>
                             <div key={index}>
-                                <div className='relative flex mt-10'>
+                                <div className='relative flex mt-10 '>
                                     <div className='group cursor-pointer overflow-hidden ml-3'>
                                         <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`${item.movie.poster_url}`} />
                                         <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>

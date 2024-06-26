@@ -1,6 +1,6 @@
 import NavbarOnly from "../Component/Layout/NavbarOnly";
 
-import Movie from "../Pages/Movie";
+import DetailMovie from "../Pages/DetailMovie";
 import Home from '../Pages/Home'
 import Watch_Movie from "../Pages/Watch_Movie";
 import Series_Movie from "../Pages/Series_Movie";
@@ -13,7 +13,7 @@ import Search_Movie from "../Pages/Search_Movie";
 import SaveMovies from "../Pages/SaveMovies";
 const PublicRoutes = [
     {path : '/', component: Home},
-    {path : '/infoMovie/:slug', component: Movie, layout : NavbarOnly},
+    {path : '/infoMovie/:slug', component: DetailMovie, layout : NavbarOnly},
     {path : '/watchMovie/:watch', component: Watch_Movie, layout : NavbarOnly},
     {path : '/Series_Movie', component: Series_Movie, layout : NavbarOnly},
     {path : '/Single_Movie', component: Single_Movie, layout : NavbarOnly},

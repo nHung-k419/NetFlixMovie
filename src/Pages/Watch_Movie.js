@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Navbar from '../Component/Navbar';
-import GridLoader from "react-spinners/GridLoader";
+import HashLoader from "react-spinners/HashLoader";
 
 function Watch_Movie() {
     const { watch } = useParams()
@@ -37,7 +37,7 @@ function Watch_Movie() {
     return (
         <div className='w-full h-full bg-slate-800'>
             {Time_spinner ? <div className='flex justify-center h-screen items-center'>
-                <GridLoader color='#36d7b7' />
+                <HashLoader color='#36d7b7' />
             </div> : <div>
                 <div>
                     <h1 className='lg:pl-[75px] pl-7 mt-5 text-3xl font-bold text-white'>{NameMovie.name}</h1>

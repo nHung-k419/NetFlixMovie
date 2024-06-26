@@ -65,6 +65,7 @@ function Navbar({ props }) {
         // console.log(Toggle);
         toggle(!Toggle)
     }
+    // alert(window.innerWidth)
     // useEffect(() => {
     //     Search_Value_Children(ValueSearch)
     // }, [ValueSearch])
@@ -96,7 +97,7 @@ function Navbar({ props }) {
                         <a href='/TV_Shows' className='ml-3 hover:text-orange-300 cursor-pointer text-lg'>TV Shows</a>
                     </div>
                     <div className='mt-5'>
-                        <a className='ml-3 hover:text-orange-300 cursor-pointer text-lg '>Phim Đã Lưu</a>
+                        <a href='/Save_Movies' className='ml-3 hover:text-orange-300 cursor-pointer text-lg '>Phim Đã Lưu</a>
                     </div>
                     <div className='nav mt-5'>
                         <a className={` ml-3 group: hover:text-orange-300 cursor-pointer flex items-center relative text-lg }`} >Thể Loại <FaChevronDown className='Down mt-1 ml-2 ' /></a>
@@ -123,30 +124,30 @@ function Navbar({ props }) {
                 </div>
 
             </nav> : <nav className='w-[94%]'>
-                <div className='flex pl-10 font-medium ml-4 cursor-pointe text-1xl text-white'>
+                <div className='flex pl-10 font-medium ml-4 cursor-pointe lg:text-1xl text-white'>
                     <div className='mt-5'>
-                        <a className='ml-5 hover:text-orange-300 cursor-pointer text-lg' href='/'>Trang Chủ</a>
+                        <a className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg' href='/'>Trang Chủ</a>
                     </div>
                     <div className='mt-5'>
-                        <a href='/Single_Movie' className='ml-5 hover:text-orange-300 cursor-pointer text-lg'>Phim Lẻ</a>
+                        <a href='/Single_Movie' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg'>Phim Lẻ</a>
                     </div>
                     <div className='mt-5'>
-                        <a href='/Series_Movie' className='ml-5 hover:text-orange-300 cursor-pointer text-lg'>Phim Bộ</a>
+                        <a href='/Series_Movie' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg'>Phim Bộ</a>
                     </div>
                     <div className='mt-5'>
-                        <a href='/Anime_Movie' className='ml-5 hover:text-orange-300 cursor-pointer text-lg'>Phim Hoạt Hình</a>
+                        <a href='/Anime_Movie' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg'>Phim Hoạt Hình</a>
                     </div>
                     <div className='mt-5'>
-                        <a href='/TV_Shows' className='ml-5 hover:text-orange-300 cursor-pointer text-lg'>TV Shows</a>
+                        <a href='/TV_Shows' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg'>TV Shows</a>
                     </div>
                     <div className='mt-5'>
-                        <a href='/Save_Movies' className='ml-5 hover:text-orange-300 cursor-pointer text-lg '>Phim Đã Lưu</a>
+                        <a href='/Save_Movies' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg '>Phim Đã Lưu</a>
                     </div>
                     <div className='nav mt-5'>
                         <a className={` ml-5 group: hover:text-orange-300 cursor-pointer flex items-center relative text-lg }`} >Thể Loại <FaChevronDown className='Down mt-1 ml-2 ' /></a>
-                        <ul className='ul absolute bg-slate-700  h-[50%] w-[640px] rounded-sm ml-5 z-10 '>
+                        <ul className='ul absolute bg-slate-700 h-[50%] w-[640px] rounded-sm ml-5 z-10  '>
                             {Value_cate.map((item, index) => (
-                                <li key={index} className='ml-2  hover:text-orange-300 cursor-pointer text-mt-4 text-lg'>
+                                <li key={index} className='ml-2 hover:text-orange-300 cursor-pointer text-mt-4 lg:text-lg'>
                                     <a href={`/Category_Movie/${item.slug}`} data-slug="hanh-dong">{item.name}</a>
                                 </li>
                             ))}
@@ -164,8 +165,8 @@ function Navbar({ props }) {
                             ))}
                         </ul>
                     </div>
-                    <div className='mt-1 mr-6 absolute right-[73px] mt-5'>
-                        <input ref={search_inputRef} onKeyDown={(e) => Handle_Search(e)} className='bg-slate-500 rounded-sm w-[350px] h-[35px] pl-3 relative outline-none  placeholder:text-white' type='text' placeholder='Tìm Kiếm...' ></input>
+                    <div className='mr-6 absolute right-[73px] mt-5'>
+                        <input ref={search_inputRef} onKeyDown={(e) => Handle_Search(e)} className='bg-slate-500 rounded-sm w-[250px] h-[35px] lg:w-[350px]  pl-3 relative outline-none  placeholder:text-white' type='text' placeholder='Tìm Kiếm...' ></input>
                         {/* <input type="submit" onClick={(e) => handle_SearchClick(e)} className='absolute right-3 mt-[10px] text-gray-100 ' ><FaSearch /></input> */}
                         <button type="submit" onClick={(e) => handle_SearchClick(e)} className='absolute right-3 mt-[10px] text-gray-100 '><FaSearch /></button>
                     </div>

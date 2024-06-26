@@ -3,7 +3,7 @@ import Navbar from "./Component/Navbar";
 import Slider_header from "./Component/Slider";
 import Home from "./Pages/Home";
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import Movie from "./Pages/Movie";
+import DetailMovie from "./Pages/DetailMovie.js";
 import { PublicRoutes } from './Routes/index.js'
 import DefaultLayout from "./Component/Layout/DefaultLayout/index.js";
 import { toast, ToastContainer } from 'react-toastify';
