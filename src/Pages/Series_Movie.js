@@ -24,7 +24,6 @@ function Series_Movie() {
         const CallPageSeries = async () => {
             const data = await handleGetPageSeries(Page)
             setPartSeriesMovie(data.data.items)
-            console.log(data.data.params.pagination);
             setCurrentPage([data.data.params.pagination.totalPages])
             setTime_spinner(true)
             setTimeout(() => {
@@ -37,6 +36,7 @@ function Series_Movie() {
         numberPage.push(i)
     }
     const handleCheckPage = (e) => {
+        // e.preventDefault()
         setPage(e.target.dataset.index)
     }
     return (
@@ -71,11 +71,11 @@ function Series_Movie() {
                         ))}
                     </div>
                 </div>
-                <div className='w-[93%] pl-[75px] '>
+                <div className='w-[93%] pl-10 lg:pl-[75px] '>
                     <div className='w-full mt-7 flex gap-5 overflow-x-scroll scrollbar-thin'>
                         {numberPage.map((item, index) => (
                             <div key={index} className='outline-none'>
-                                <button className={`w-[45px] h-[33px] rounded-sm bg-yellow-400 mb-2 font-bold hover:bg-yellow-500`} data-index={item} onClick={(e) => handleCheckPage(e)}>{item} </button>
+                                <button className={`w-[45px] h-[33px] rounded-sm bg-yellow-400 mb-2 font-bold hover:bg-yellow-500 ${item === Page ? 'bg-blue-400 ' : 'bg-yellow-400'}`} data-index={item} onClick={(e) => handleCheckPage(e)}>{item} </button>
                             </div>
                         ))}
                     </div>

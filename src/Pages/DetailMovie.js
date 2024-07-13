@@ -13,14 +13,6 @@ function Movie() {
       SetMovie([data.movie])
     }
     CallPageCountry()
-    // console.log(slug);
-    // fetch(`https://phimapi.com/phim/${slug}`)
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data.episodes[0].server_data);
-    //     SetMovie([data.movie])
-    //     // console.log(data.episodes[0].server_data);
-    //   })
   }, [])
 
   return (

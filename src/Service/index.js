@@ -73,3 +73,9 @@ export const handleGetDetailMovie = async (slug) => {
     const PageDetail = await axios.get(`https://phimapi.com/phim/${slug}`)
     return PageDetail.data
 }
+
+// Watch Movie 
+export const handleWatchMovie = async (watch) => {
+    const WatchPage = await axios.get(`https://phimapi.com/phim/${watch}`)
+    return WatchPage.data
+}

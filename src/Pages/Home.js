@@ -7,7 +7,6 @@ import HashLoader from "react-spinners/HashLoader";
 import { RiAddBoxFill } from "react-icons/ri";
 import { FaRegHeart } from "react-icons/fa";
 import { toast, ToastContainer } from 'react-toastify';
-import { FaSquareMinus } from "react-icons/fa6";
 import '../index.css'
 import { handleGetAnimeMovie, handleGetSeriesMovie, handleGetSingleMovie, handleGetTVshowMovie, handleSavemovie } from '../Service';
 function Content({ Toogle, getLocalStorage }) {
@@ -76,7 +75,7 @@ function Content({ Toogle, getLocalStorage }) {
         const data = await handleSavemovie(Slug)
         setSaveMovie(SaveMovie.concat(data))
     }
-    if (SaveMovie.length) {
+    if (SaveMovie.length) { 
         localStorage.setItem('MovieSave', JSON.stringify(SaveMovie))
         toast.success('Lưu Thành Công')
     }
@@ -120,23 +119,23 @@ function Content({ Toogle, getLocalStorage }) {
                             </a>
                         ))}</> : <Slider {...settings}>
                             {Api_single_movie.map((item, index) => (
-                                <div key={index} className='h-[400px]'>
-                                    <div className='relative lg:mt-3 '>
-                                        <div className='group cursor-pointer overflow-hidden ml-3'>
-                                            <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
-                                            <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
-                                                <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
-                                            </div>
-                                            <div>
-                                                <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden group-hover:block size-8 text-white' />
-                                            </div>
-                                            <div>
-                                                <FaRegHeart className='absolute bottom-0 left-3 hidden group-hover:block size-6 text-white' />
-                                            </div>
+                                <a href={'/infoMovie/' + item.slug} key={index} className='h-[400px]'>
+                                <div className='relative flex mt-3'>
+                                    <div className='group cursor-pointer overflow-hidden ml-3'>
+                                        <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
+                                        <div className='absolute text-4xl text-white top-28 ml-20 hidden lg:group-hover:block lg:group-hover:animate-bounce '>
+                                            <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
+                                        </div>
+                                        <div>
+                                            <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden lg:group-hover:block size-8 text-white' />
+                                        </div>
+                                        <div>
+                                            <FaRegHeart className='absolute bottom-0 left-3 hidden lg:group-hover:block size-6 text-white' />
                                         </div>
                                     </div>
-                                    <h3 className='mt-1 text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>
                                 </div>
+                                <h3 className='mt-1 w-[200px]  text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>
+                            </a>
                             ))}
                         </Slider>}
                     </div>
@@ -164,23 +163,23 @@ function Content({ Toogle, getLocalStorage }) {
                             </a>
                         ))}</> : <Slider {...settings}>
                             {Api_series_movie.map((item, index) => (
-                                <div key={index} className='h-[400px]'>
-                                    <div className='relative lg:mt-3 '>
-                                        <div className='group cursor-pointer overflow-hidden ml-3'>
-                                            <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
-                                            <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
-                                                <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
-                                            </div>
-                                            <div>
-                                                <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden group-hover:block size-8 text-white' />
-                                            </div>
-                                            <div>
-                                                <FaRegHeart className='absolute bottom-0 left-3 hidden group-hover:block size-6 text-white' />
-                                            </div>
+                                <a href={'/infoMovie/' + item.slug} key={index} className='h-[400px]'>
+                                <div className='relative flex mt-3'>
+                                    <div className='group cursor-pointer overflow-hidden ml-3'>
+                                        <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
+                                        <div className='absolute text-4xl text-white top-28 ml-20 hidden lg:group-hover:block lg:group-hover:animate-bounce '>
+                                            <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
+                                        </div>
+                                        <div>
+                                            <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden lg:group-hover:block size-8 text-white' />
+                                        </div>
+                                        <div>
+                                            <FaRegHeart className='absolute bottom-0 left-3 hidden lg:group-hover:block size-6 text-white' />
                                         </div>
                                     </div>
-                                    <h3 className='mt-1 text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>
                                 </div>
+                                <h3 className='mt-1 w-[200px]  text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>
+                            </a>
                             ))}
                         </Slider>}
                     </div>
@@ -208,23 +207,23 @@ function Content({ Toogle, getLocalStorage }) {
                             </a>
                         ))}</> : <Slider {...settings}>
                             {Api_anime_movie.map((item, index) => (
-                                <div key={index} className='h-[400px]'>
-                                    <div className='relative lg:mt-3 '>
-                                        <div className='group cursor-pointer overflow-hidden ml-3'>
-                                            <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
-                                            <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
-                                                <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
-                                            </div>
-                                            <div>
-                                                <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden group-hover:block size-8 text-white' />
-                                            </div>
-                                            <div>
-                                                <FaRegHeart className='absolute bottom-0 left-3 hidden group-hover:block size-6 text-white' />
-                                            </div>
+                                <a href={'/infoMovie/' + item.slug} key={index} className='h-[400px]'>
+                                <div className='relative flex mt-3'>
+                                    <div className='group cursor-pointer overflow-hidden ml-3'>
+                                        <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
+                                        <div className='absolute text-4xl text-white top-28 ml-20 hidden lg:group-hover:block lg:group-hover:animate-bounce '>
+                                            <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
+                                        </div>
+                                        <div>
+                                            <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden lg:group-hover:block size-8 text-white' />
+                                        </div>
+                                        <div>
+                                            <FaRegHeart className='absolute bottom-0 left-3 hidden lg:group-hover:block size-6 text-white' />
                                         </div>
                                     </div>
-                                    <h3 className='mt-1 text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>
                                 </div>
+                                <h3 className='mt-1 w-[200px]  text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>
+                            </a>
                             ))}
                         </Slider>}
                     </div>
@@ -252,23 +251,23 @@ function Content({ Toogle, getLocalStorage }) {
                             </a>
                         ))}</> : <Slider {...settings}>
                             {Api_Tv_Show.map((item, index) => (
-                                <div key={index} className='h-[400px]'>
-                                    <div className='relative lg:mt-3 '>
-                                        <div className='group cursor-pointer overflow-hidden ml-3'>
-                                            <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
-                                            <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
-                                                <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
-                                            </div>
-                                            <div>
-                                                <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden group-hover:block size-8 text-white' />
-                                            </div>
-                                            <div>
-                                                <FaRegHeart className='absolute bottom-0 left-3 hidden group-hover:block size-6 text-white' />
-                                            </div>
+                                <a href={'/infoMovie/' + item.slug} key={index} className='h-[400px]'>
+                                <div className='relative flex mt-3'>
+                                    <div className='group cursor-pointer overflow-hidden ml-3'>
+                                        <img className='w-[200px] h-[280px] object-cover rounded-sm group-hover:scale-125 duration-500 transition-transform group-hover:opacity-50' src={`https://img.phimapi.com/${item.poster_url}`} />
+                                        <div className='absolute text-4xl text-white top-28 ml-20 hidden lg:group-hover:block lg:group-hover:animate-bounce '>
+                                            <a href={'/infoMovie/' + item.slug}> <FaPlay /></a>
+                                        </div>
+                                        <div>
+                                            <RiAddBoxFill onClick={(e) => handleAddMovie(item.slug)} className='absolute top-[-4px] left-2 hidden lg:group-hover:block size-8 text-white' />
+                                        </div>
+                                        <div>
+                                            <FaRegHeart className='absolute bottom-0 left-3 hidden lg:group-hover:block size-6 text-white' />
                                         </div>
                                     </div>
-                                    <h3 className='mt-1 text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>
                                 </div>
+                                <h3 className='mt-1 w-[200px]  text-white text-xl hover:text-yellow-300 cursor-pointer ml-3'>{item.name}</h3>
+                            </a>
                             ))}
                         </Slider>}
                     </div>

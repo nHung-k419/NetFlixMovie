@@ -52,7 +52,7 @@ function Category_Movie() {
                         <h2 className='uppercase mt-10 font-bold text-white pl-[75px] flex gap-1'> Danh Sách Tất Cả Phim {Title_Movie} </h2>
                         <h2 className='uppercase mt-10 font-bold text-white pr-[53px] flex gap-1'>Trang {Page}</h2>
                     </div>
-                    <div className='pl-[3px] w-[97%] flex gap-2 flex-wrap mt-3'>
+                    <div className='pl-[83px] w-[97%] flex gap-2 flex-wrap mt-3'>
                         {PartSeriesMovie.map((item, index) => (
                             <a href={'/infoMovie/' + item.slug} key={index}>
                                 <div className='relative flex mt-3'>
@@ -74,7 +74,7 @@ function Category_Movie() {
                         ))}
                     </div>
                 </div>
-                <div className='w-[93%] pl-[75px] '>
+                <div className='w-[93%] pl-10 lg:pl-[75px] '>
                     <div className='w-full mt-7 flex gap-5 overflow-x-scroll scrollbar-thin '>
                         {numberPage.map((item, index) => (
                             <div key={index}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FaPlay } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
 import HashLoader from "react-spinners/HashLoader";
@@ -37,13 +37,13 @@ function Search_Movie() {
             }, 1000)
         }
         CallPageSearch()
-    }, [Page, slug_Search]);
+    }, [slug_Search]);
     for (let i = 1; i <= CurrentPage; i++) {
         numberPage.push(i)
     }
-    const handleCheckPage = (e) => {
-        setPage(e.target.dataset.index)
-    }
+    // const handleCheckPage = (e) => {
+    //     setPage(e.target.dataset.index)
+    // }
     return (
         <div className={`${PartSeriesMovie.length > 6 ? 'h-full' : 'h-screen '}`}>
             {PartSeriesMovie.length > 0 ? <div>
@@ -55,7 +55,7 @@ function Search_Movie() {
                             <h2 className='uppercase mt-10 font-bold text-white pl-[75px] flex gap-1'>{title_Search} </h2>
                             <h2 className='uppercase mt-10 font-bold text-white pr-[53px] flex gap-1'>Trang {Page}</h2>
                         </div>
-                        <div className='pl-[63px]  w-[97%] flex gap-2 flex-wrap mt-3'>
+                        <div className='pl-[83px] w-[97%] flex gap-2 flex-wrap mt-3'>
                             {PartSeriesMovie.map((item, index) => (
                                 <a href={'/infoMovie/' + item.slug} key={index}>
                                     <div className='relative flex mt-3'>
@@ -77,18 +77,9 @@ function Search_Movie() {
                             ))}
                         </div>
                     </div>
-                    {/* <div className='w-[93%] pl-[75px] '>
-                        <div className='w-full mt-7 flex gap-5 overflow-x-scroll scrollbar-thin '>
-                            {numberPage.map((item, index) => (
-                                <div key={index}>
-                                    <button className={`w-[45px] h-[33px] rounded-sm bg-yellow-400 mb-2 font-bold hover:bg-yellow-500`} data-index={item} onClick={(e) => handleCheckPage(e)}>{item} </button>
-                                </div>
-                            ))}
-                        </div>
-                    </div> */}
                 </div>}
             </div> : <div className='h-screen flex items-center justify-center'>
-                <h1 className=' font-bold text-3xl uppercase text-gray-50 flex gap-2'>Không Tìm thấy Phim<p className='text-teal-500'> {slug_Search}</p></h1>
+                <h1 className=' font-bold lg:text-3xl uppercase text-gray-50 flex gap-2'>Không Tìm thấy Phim<p className='text-teal-500'> {slug_Search}</p></h1>
             </div>}
 
         </div>

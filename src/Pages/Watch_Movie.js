@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Navbar from '../Component/Navbar';
 import HashLoader from "react-spinners/HashLoader";
+import { handleWatchMovie } from '../Service';
 
 function Watch_Movie() {
     const { watch } = useParams()
@@ -11,7 +11,6 @@ function Watch_Movie() {
     const [checkSlug, setCheckSlug] = useState([])
     const [seriesMovie, setcheckseriesMovie] = useState(false)
     const [Time_spinner, setTime_spinner] = useState(true)
-    const [SaveMovie, setSaveMovie] = useState([])
     const handlecheckData = (e) => {
         for (let i = 0; i < checkSlug.length; i++) {
             if (e.target.dataset.slug === checkSlug[i].slug) {
@@ -20,22 +19,22 @@ function Watch_Movie() {
         }
     }
     useEffect(() => {
-        fetch(`https://phimapi.com/phim/${watch}`)
-            .then(res => res.json())
-            .then(data => {
-                setTime_spinner(true)
-                setTimeout(() => {
-                    setNameMovie(data.movie)
-                    setPartMovie(data.episodes[0].server_data)
-                    setWatchMovie(data.episodes[0].server_data[0].link_embed)
-                    setCheckSlug(data.episodes[0].server_data)
-                    setTime_spinner(false)
-                }, 1000)
-            })
-    }, [])
+        const WatchPage = async () => {
+            const data = await handleWatchMovie(watch)
+            setTime_spinner(true)
+            setNameMovie(data.movie)
+            setPartMovie(data.episodes[0].server_data)
+            setWatchMovie(data.episodes[0].server_data[0].link_embed)
+            setCheckSlug(data.episodes[0].server_data)
+            setTimeout(() => {
+                setTime_spinner(false)
+            }, 1000)
+        }
+        WatchPage()
+    }, [watch])
 
     return (
-        <div className='w-full h-full bg-slate-800'>
+        <div className={`w-full bg-slate-800 ${PartMovie.length <= 14 ? 'lg:h-screen h-screen' : 'lg:h-full h-full'}`}>
             {Time_spinner ? <div className='flex justify-center h-screen items-center'>
                 <HashLoader color='#36d7b7' />
             </div> : <div>
@@ -47,11 +46,11 @@ function Watch_Movie() {
                 </div>
                 <div className='pl-[60px] w-[95%] flex flex-wrap '>
                     {PartMovie.map((part, index) => (
-                        <button key={index} className={`bg-yellow-400 lg:w-[90px] w-[60px] lg:h-[40px] h-[30px] rounded-md mt-5 lg:ml-4 ml-1 font-bold hover:bg-yellow-500 mb-5 ${part.link_embed === seriesMovie && 'bg-blue-600'} `} data-slug={part.slug} onClick={(e) => handlecheckData(e)}>{part.name}</button>
+                        <button key={index} className={`bg-yellow-400 lg:w-[90px] w-[60px] lg:h-[40px] h-[40px] rounded-md mt-5 lg:ml-4 ml-1 font-bold hover:bg-yellow-500 mb-5
+                         ${part.link_embed === seriesMovie ? 'bg-blue-400 ' : 'bg-yellow-400'} `} data-slug={part.slug} onClick={(e) => handlecheckData(e)}>{part.name}</button>
                     ))}
                 </div>
             </div>}
-
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Component/Navbar'
 import { FaPlay } from "react-icons/fa";
 import HashLoader from "react-spinners/HashLoader";
 import { RiAddBoxFill } from "react-icons/ri";
@@ -71,7 +70,7 @@ function Series_Movie() {
                         ))}
                     </div>
                 </div>
-                <div className='w-[93%] pl-[75px] '>
+                <div className='w-[93%] pl-10 lg:pl-[75px] '>
 
                     <div className='w-full mt-7 flex gap-5 overflow-x-scroll scrollbar-thin '>
                         {numberPage.map((item, index) => (

@@ -20,9 +20,6 @@ function SaveMovies({getLocalStorage}) {
                                         <div className='absolute text-4xl text-white top-28 ml-20 hidden group-hover:block group-hover:animate-bounce '>
                                             <a href={'/infoMovie/' + item.movie.slug}> <FaPlay /></a>
                                         </div>
-                                        {/* <div>
-                                            <RiAddBoxFill className='absolute top-[-4px] left-2 hidden group-hover:block size-8 text-white' />
-                                        </div> */}
                                         <div>
                                             <FaRegHeart className='absolute bottom-0 left-3 hidden group-hover:block size-6 text-white' />
                                         </div>

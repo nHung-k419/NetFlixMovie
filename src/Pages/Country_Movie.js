@@ -74,7 +74,7 @@ function Country_Movie() {
                         ))}
                     </div>
                 </div>
-                <div className='w-[93%] pl-[75px] '>
+                <div className='w-[93%] pl-10 lg:pl-[75px] '>
                     <div className='w-full mt-7 flex gap-5 overflow-x-scroll scrollbar-thin '>
                         {numberPage.map((item, index) => (
                             <div key={index}>

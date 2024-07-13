@@ -3,14 +3,14 @@
     display: none;
 }
 .nav:hover .ul{
-    transition: 0.2s;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     flex-direction: column;
+    transition: 0.5s;
 }
 .nav .Down {
-    transition: 0.3s;
+    transition: 0.5s;
 }
 .nav:hover .Down {
     transform: rotate(180deg);
@@ -23,9 +23,10 @@
     flex-wrap: wrap;
     gap: 10px;
     flex-direction: column;
+    transition: 0.5s;
 }
 .Nav2 .Down2 {
-    transition: 0.3s;
+    transition: 0.5s;
 }
 .Nav2:hover .Down2{
     transform: rotate(180deg);

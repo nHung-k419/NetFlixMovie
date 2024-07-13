@@ -17,7 +17,7 @@ function Slider_header({ props }) {
                     setPostTer(data.items)
                 }, 1000)
             })
-    })
+    },[])
     var settings = {
         // dots: true,
         infinite: true,
