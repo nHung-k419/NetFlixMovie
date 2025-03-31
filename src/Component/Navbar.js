@@ -19,9 +19,10 @@ function Navbar({ props }) {
     const [Value_cate, setValue_cate] = useState([])
     const [ValueCountry, setValue_Country] = useState([])
     const search_inputRef = useRef(null)
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [Toggle, setToggle] = useState(false)
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const Navigate = useNavigate()
+// console.log('screenWidth',screenWidth);
 
     useEffect(() => {
         const handleResize = () => {
@@ -137,35 +138,35 @@ function Navbar({ props }) {
             </nav> : <nav className='w-[94%]'>
                 <div className='flex pl-10 font-medium ml-4 cursor-pointe lg:text-1xl text-white'>
                     <div className='mt-5'>
-                        <a className='ml-5 hover:text-orange-300 cursor-pointer lg:text-xl' href='/'>Trang Chủ</a>
+                        <a className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg' href='/'>Trang Chủ</a>
                     </div>
                     <div className='mt-5'>
-                        <a href='/Single_Movie' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-xl'>Phim Lẻ</a>
+                        <a href='/Single_Movie' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg'>Phim Lẻ</a>
                     </div>
                     <div className='mt-5'>
-                        <a href='/Series_Movie' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-xl'>Phim Bộ</a>
+                        <a href='/Series_Movie' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg'>Phim Bộ</a>
                     </div>
                     <div className='mt-5'>
-                        <a href='/Anime_Movie' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-xl'>Phim Hoạt Hình</a>
+                        <a href='/Anime_Movie' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg'>Phim Hoạt Hình</a>
                     </div>
                     <div className='mt-5'>
-                        <a href='/TV_Shows' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-xl'>TV Shows</a>
+                        <a href='/TV_Shows' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg'>TV Shows</a>
                     </div>
                     <div className='mt-5'>
-                        <a href='/Save_Movies' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-xl '>Phim Đã Lưu</a>
+                        <a href='/Save_Movies' className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg '>Phim Đã Lưu</a>
                     </div>
                     <div className='nav mt-5'>
-                        <a className={` ml-5 group: hover:text-orange-300 cursor-pointer flex items-center relative text-xl }`} >Thể Loại <FaChevronDown className='Down mt-1 ml-2 ' /></a>
+                        <a className={` ml-5 group: hover:text-orange-300 cursor-pointer flex items-center relative lg:text-lg }`} >Thể Loại <FaChevronDown className='Down mt-1 ml-2 ' /></a>
                         <ul className='ul absolute bg-slate-700 h-[50%] w-[640px] rounded-sm ml-5 z-10  '>
                             {Value_cate.map((item, index) => (
-                                <li key={index} className='ml-2 hover:text-orange-300 cursor-pointer text-mt-4 lg:text-xl'>
+                                <li key={index} className='ml-2 hover:text-orange-300 cursor-pointer text-mt-4 lg:text-lg'>
                                     <a href={`/Category_Movie/${item.slug}`} data-slug="hanh-dong">{item.name}</a>
                                 </li>
                             ))}
                         </ul>
                     </div>
                     <div className='Nav2 mt-5'>
-                        <a className='ml-5 hover:text-orange-300 cursor-pointer text-xl flex items-center' >Quốc Gia <FaChevronDown className='Down2 mt-1 ml-2' /></a>
+                        <a className='ml-5 hover:text-orange-300 cursor-pointer lg:text-lg  flex items-center' >Quốc Gia <FaChevronDown className='Down2 mt-1 ml-2' /></a>
                         <ul className='ul absolute bg-slate-700  h-[70%] w-[620px] rounded-sm ml-5 row-auto z-10'>
                             {ValueCountry.map((item, index) => (
                                 <li key={index} className='ml-2  hover:text-orange-300 cursor-pointer text-mt-4 text-xl'>

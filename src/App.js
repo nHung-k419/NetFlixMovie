@@ -18,13 +18,12 @@ function App() {
     setToogle(toogle)
   }
   return (
-    <div className="w-[100%] h-full bg-slate-800">
+    <div className="w-[99%] h-full bg-slate-800">
       <Routes>
         {PublicRoutes.map((route, index) => {
           // const Layout = route.layout === null ? Fragment : DefaultLayout
           // Default Layout is Default Layou
           let Layout = DefaultLayout
-
           // if layout is exits then this Layout = route.layout 
           if (route.layout) {
             Layout = route.layout
